@@ -1,18 +1,31 @@
+import { PostService } from './services/post.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PostComponent } from './components/post/post.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule } from '@angular/router';
+import { LocalStorageService } from './services/local-storage.service';
+import { AboutComponent } from './components/about/about.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PostComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    RouterModule.forRoot([]),
+    FontAwesomeModule,
   ],
-  providers: [],
+  providers: [
+    LocalStorageService,
+    PostService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

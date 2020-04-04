@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "vitor-js": {
@@ -54,6 +54,11 @@
             "styles": [
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -105,6 +110,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "vitor-js"
+    }
+  },
+  "defaultProject": "vitor-js",
+  "cli": {
+    "analytics": "ab154e29-4312-4cb5-988d-a70cab62d913"
+  }
 }

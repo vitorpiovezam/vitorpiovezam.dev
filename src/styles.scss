@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+@import './assets/core';
+
+$font-family-primary: '"Open Sans", arial, sans-serif';
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+}
+
+html {
+  -moz-osx-font-smoothing: auto;
+  -webkit-font-smoothing: auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a {
+  transition: text-decoration 1s;
+  text-decoration: underline;
+  color: inherit;
+}
+
+a:active,
+a:hover {
+  outline: 0;
+  text-decoration: none;
+}
+
+a.active {
+  text-decoration: none;
+}
+
