@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
       <p>
       I like to ride my bike, listen to alternative music, watch documentaries and drink orange juice.</p>
       <p>My passion is development. Optimize processes and shortening paths is an art that programming makes possible.</p>
-      <p>So in recent years I have developed my skills in typescript and logic. Acting as Front end with Angular and
+      <p>So in recent years I have developed my skills in logic, typescript and cloud computing. Acting as Front end with Angular and
         currently as Fullstack development at <a target="_blank"
           href="https://github.com/cubonetwork">Cubo.network</a>.
       </p>
