@@ -1,6 +1,8 @@
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
+import { Post } from '../components/post/post.component';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class PostService {
@@ -35,11 +37,11 @@ export class PostService {
     }
   ];
 
-  apiUrl = 'https://my-blog-cms.herokuapp.com';
+  apiUrl = 'http://localhost:3000';
   constructor(private http: HttpClient) { }
 
-  getLastPosts() {
-    return this.http.get(`${this.apiUrl}/posts`);
+  getLastPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.apiUrl}/posts`);
   }
 
   getPostBySlug(slug: string) {

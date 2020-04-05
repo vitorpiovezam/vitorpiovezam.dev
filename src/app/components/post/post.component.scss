@@ -1,0 +1,58 @@
+@import '../../../assets/core.scss';
+
+.container {
+  .chip {
+    padding: 2px 5px;
+    color: black;
+    background: aquamarine;
+
+    &:hover {
+      cursor: pointer;
+      display: block;
+    }
+
+    &:not(:last-child) {
+      margin-right: 5px;
+    }
+  }
+
+  @include above($screen-sm) {
+    padding: 0 20px 0 20px;
+  }
+}
+
+ul.posts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  .card {
+    margin-bottom: 2rem;
+    
+    &:hover {
+      cursor: pointer;
+      outline: 2px solid aquamarine;
+    }
+  }
+}
+
+article.post {
+  width: 100%;
+  line-height: 1.5rem;
+
+  fa-icon{
+    margin-right: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .scroll-top {
+    position: fixed;
+    bottom: 70px;
+    right: 70px;
+    font-size: 30px;
+    transform: rotate(90deg);
+  }
+}

@@ -11,7 +11,7 @@ import { AboutComponent } from './components/about/about.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-
+import { MarkdownModule, MarkdownService } from 'ngx-markdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,14 +19,16 @@ import { environment } from '../environments/environment';
     AboutComponent,
   ],
   imports: [
+    FontAwesomeModule,
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([]),
-    FontAwesomeModule,
+    MarkdownModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     LocalStorageService,
+    MarkdownService,
     PostService,
   ],
   bootstrap: [AppComponent]
