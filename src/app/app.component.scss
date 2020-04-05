@@ -1,10 +1,19 @@
 @import '../assets/core.scss';
 
+svg {
+  fill: currentColor;
+  margin-right: 5px;
+}
+
 .container {
   display: flex;
   padding: 20px 10% 20px 10%;
-  
+  min-height: 100vh;
+  overflow-y: unset;
+  box-sizing: border-box;
+
   @include below($screen-sm) {
+    overflow-y: auto;
     padding: 20px 4% 20px 4%;
     flex-flow: column;
   }
@@ -38,19 +47,35 @@ nav {
   .menu-item {
     line-height: 24px;
   }
+}
 
-  .theme-toggler :hover {
+.theme-toggler {
+  text-transform: uppercase;
+  padding: 8px 10px;
+  border-radius: 10px;
+
+  span {
+    margin-left: 10px;
+  }
+
+  &:hover {
     cursor: pointer;
   }
 }
 
 .about {
-  width: 30%;
-  height: 100vh;
+  width: 35%; 
 
   @include below($screen-sm) {
     width: 100%;
-    height: auto;
+  }
+}
+
+.posts {
+  width: 75%; 
+
+  @include below($screen-sm) {
+    width: 100%;
   }
 }
 

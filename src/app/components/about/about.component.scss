@@ -3,14 +3,8 @@
 .photo {
   width: 100%;
   filter: brightness(0.8);
-}
 
-.text {
-  font-size: 1rem;
-}
-
-.icon {
-  fill: currentColor;
-  transform: scale(1.2);
-  margin-right: 10px;
+  @include below($screen-sm) {
+    display: none;
+  }
 }
