@@ -26,7 +26,7 @@ import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
         </div>
 
         <div class="posts">
-          <app-post></app-post>
+          <app-posts></app-posts>
         </div>
     </div>
   `,

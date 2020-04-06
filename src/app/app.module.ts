@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { PostComponent } from './components/post/post.component';
+import { PostsComponent } from './components/posts/posts.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
 import { LocalStorageService } from './services/local-storage.service';
@@ -15,7 +15,7 @@ import { MarkdownModule, MarkdownService } from 'ngx-markdown';
 @NgModule({
   declarations: [
     AppComponent,
-    PostComponent,
+    PostsComponent,
     AboutComponent,
   ],
   imports: [

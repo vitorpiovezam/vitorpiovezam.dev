@@ -2,16 +2,18 @@ import { Component, OnInit, ViewChild, HostListener, Inject, InjectionToken } fr
 import { PostService } from 'src/app/services/post.service';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { DOCUMENT } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-post',
+  selector: 'app-posts',
   template: `
-  <div id="top" class="container">
-    <h2>My latest posts</h2>
-    <main>
-      <ul class="posts">
+  <div class="container">
+    <div>
+      <h2>My latest posts</h2>
+      <main>
+        <ul class="posts">
           <li *ngFor="let post of posts">
-            <a (click)="selectPost(post)">
+            <a href="#post" (click)="selectPost(post)">
               <div class="card">
                 <h3>{{ post.title }}</h3>
                 <p>{{ post.textPreview }}</p>
@@ -19,22 +21,33 @@ import { DOCUMENT } from '@angular/common';
               </div>
             </a>
           </li>
-      </ul>
-    </main>
+        </ul>
+      </main>
+    </div>
+    
+    <article id="post" class="post" >
+      <h2>{{ selectedPost?.title }}</h2>
+      <markdown [data]="selectedPost?.post"></markdown>
+    </article>
+
+    <a *ngIf="windowScrolled" (click)="scrollUp()">
+    <span class="scroller"> <</span>
+  </a>
   </div>
   `,
-  styleUrls: ['post.component.scss']
+  styleUrls: ['posts.component.scss']
 })
-export class PostComponent implements OnInit {
+export class PostsComponent implements OnInit {
   posts: Post[];
   types: string[] = [];
 
-  selectedPost: Post;
+  selectedPost: Post = null;
   windowScrolled = false;
   close = faTimes;
 
   constructor(
-    private postService: PostService
+    private postService: PostService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
