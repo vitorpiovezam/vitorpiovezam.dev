@@ -31,7 +31,7 @@ import { ActivatedRoute } from '@angular/router';
       <markdown [data]="selectedPost?.post"></markdown>
     </article>
 
-    <a *ngIf="windowScrolled" (click)="scrollUp()">
+    <a *ngIf="windowScrolled" (click)="scrollUpPost()">
       <span class="scroller"> <</span>
     </a>
   </div>
