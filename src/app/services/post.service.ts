@@ -37,7 +37,7 @@ export class PostService {
     }
   ];
 
-  apiUrl = 'http://localhost:3000';
+  apiUrl = 'https://my-blog-cms.herokuapp.com';
   constructor(private http: HttpClient) { }
 
   getLastPosts(): Observable<Post[]> {

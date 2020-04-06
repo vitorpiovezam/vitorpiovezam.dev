@@ -10,10 +10,11 @@ import { ActivatedRoute } from '@angular/router';
   <div class="container">
     <div>
       <h2>My latest posts</h2>
+      <small *ngIf="loading">Heroku container is sleppy 😴, wait here, the posts are coming!</small>
       <main>
         <ul class="posts">
           <li *ngFor="let post of posts">
-            <a href="#post" (click)="selectPost(post)">
+            <a (click)="selectPost(post)">
               <div class="card">
                 <h3>{{ post.title }}</h3>
                 <p>{{ post.textPreview }}</p>
@@ -25,14 +26,14 @@ import { ActivatedRoute } from '@angular/router';
       </main>
     </div>
     
-    <article id="post" class="post" >
-      <h2>{{ selectedPost?.title }}</h2>
+    <article id="post" class="post" *ngIf="selectedPost">
+      <h2>{{ selectedPost?.title }} <fa-icon [icon]="close" (click)="closePost()"></fa-icon></h2>
       <markdown [data]="selectedPost?.post"></markdown>
     </article>
 
     <a *ngIf="windowScrolled" (click)="scrollUp()">
-    <span class="scroller"> <</span>
-  </a>
+      <span class="scroller"> <</span>
+    </a>
   </div>
   `,
   styleUrls: ['posts.component.scss']
@@ -44,6 +45,7 @@ export class PostsComponent implements OnInit {
   selectedPost: Post = null;
   windowScrolled = false;
   close = faTimes;
+  loading = true;
 
   constructor(
     private postService: PostService,
@@ -53,8 +55,19 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     this.postService.getLastPosts().subscribe(posts => { 
       this.posts = posts;
+      this.loading = false;
       this.types = this.posts.map(post => post.type);
     });
+  }
+
+  selectPost(post: Post) {
+    this.selectedPost = post;
+    setTimeout(() => document.querySelector('article').scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
+  }
+
+  closePost() {
+    this.scrollUp();
+    setTimeout(() => this.selectedPost = null, 600);
   }
 
   @HostListener('window:scroll', [])
@@ -66,9 +79,6 @@ export class PostsComponent implements OnInit {
     document.querySelector('html').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  selectPost(post: Post) {
-    this.selectedPost = post;
-  }
 }
 
 export interface Post {
