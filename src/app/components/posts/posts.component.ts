@@ -72,7 +72,7 @@ export class PostsComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.windowScrolled = window.pageYOffset > 250 ? true : false;
+    this.windowScrolled = window.pageYOffset > 800 ? true : false;
   }
 
   scrollUpPost() {
