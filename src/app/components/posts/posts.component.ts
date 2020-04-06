@@ -62,7 +62,7 @@ export class PostsComponent implements OnInit {
 
   selectPost(post: Post) {
     this.selectedPost = post;
-    setTimeout(() => document.querySelector('article').scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
+    setTimeout(() => this.scrollUpPost(), 200);
   }
 
   closePost() {
@@ -73,6 +73,10 @@ export class PostsComponent implements OnInit {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.windowScrolled = window.pageYOffset > 250 ? true : false;
+  }
+
+  scrollUpPost() {
+    document.querySelector('article').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   scrollUp() {
