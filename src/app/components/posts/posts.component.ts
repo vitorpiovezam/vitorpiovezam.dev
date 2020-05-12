@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild, HostListener, Inject, InjectionToken } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { PostService } from 'src/app/services/post.service';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { DOCUMENT } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -28,7 +27,7 @@ import { ActivatedRoute } from '@angular/router';
     
     <article id="post" class="post" *ngIf="selectedPost">
       <h2>{{ selectedPost?.title }} <fa-icon [icon]="close" (click)="closePost()"></fa-icon></h2>
-      <markdown [data]="selectedPost?.post"></markdown>
+      <markdown [data]="selectedPost?.post" ngPreserveWhitespaces></markdown>
     </article>
 
     <a *ngIf="windowScrolled" (click)="scrollUpPost()">
@@ -82,7 +81,6 @@ export class PostsComponent implements OnInit {
   scrollUp() {
     document.querySelector('html').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-
 }
 
 export interface Post {

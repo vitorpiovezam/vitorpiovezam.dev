@@ -1,8 +1,8 @@
 {
-  "name": "vitor.js",
-  "short_name": "vitor.js",
+  "name": "vitorjs",
+  "short_name": "vitorjs",
   "theme_color": "#f00",
-  "background_color": "#fafafa",
+  "background_color": "#ff0000",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
