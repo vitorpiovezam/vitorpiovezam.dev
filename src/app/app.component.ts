@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { LocalStorageService } from './services/local-storage.service';
 import { Component } from '@angular/core';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
@@ -26,7 +27,11 @@ import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
         </div>
 
         <div class="posts">
-          <app-posts></app-posts>
+          <app-post-list></app-post-list>
+        </div>
+
+        <div class="post">
+          <router-outlet></router-outlet>
         </div>
     </div>
   `,
@@ -34,7 +39,7 @@ import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 })
 export class AppComponent {
   title = 'vitor-js';
-
+  postSelected = false;
   darkTheme = this.getLamp();
   lamp = faLightbulb;
 

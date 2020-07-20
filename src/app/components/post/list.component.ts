@@ -1,0 +1,94 @@
+import { Router } from '@angular/router';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { PostService } from 'src/app/services/post.service';
+
+@Component({
+  selector: 'app-post-list',
+  template: `
+  <div class="container">
+    <div>
+      <h2>My latest posts</h2>
+      <small *ngIf="loading">Heroku container is sleppy 😴, wait here, the posts are coming!</small>
+      <main>
+        <ul class="posts">
+          <li *ngFor="let post of posts">
+            <a (click)="selectPost(post.slug)">
+              <div class="card">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.textPreview }}</p>
+                <span class="chip">{{ post.type }}</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </div>
+  `,
+  styles: [
+    `
+    @import '../../../assets/core.scss';
+
+    .container {
+      padding: 0 10px;
+    }
+
+    ul.posts {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      max-height: 90vh;
+      overflow-y: scroll;
+
+      .card {
+        &:hover {
+          border: 2px solid aquamarine;
+        }
+      }
+    }
+
+    .chip {
+      padding: 2px 5px;
+      color: black;
+      background: aquamarine;
+  
+      &:hover {
+        cursor: pointer;
+        display: block;
+      }
+    }
+    `
+  ]
+})
+export class PostListComponent implements OnInit {
+  posts: Post[];
+  types: string[] = [];
+
+  selectedPost: Post = null;
+  loading = true;
+
+  constructor(
+    private postService: PostService,
+    private router: Router,
+  ) { }
+
+  ngOnInit(): void {
+    this.postService.getLastPosts().subscribe(posts => { 
+      this.posts = posts;
+      this.loading = false;
+      this.types = this.posts.map(post => post.type);
+    });
+  }
+
+  selectPost(slug: string) {
+    this.router.navigateByUrl(`post/${slug}`);
+  }
+}
+
+export interface Post {
+  slug: string;
+  title: string;
+  type: string;
+  post: any;
+  postDate: Date;
+}

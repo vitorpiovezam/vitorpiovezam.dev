@@ -1,9 +1,8 @@
 import { PostService } from './services/post.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, SecurityContext } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { PostsComponent } from './components/posts/posts.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
 import { LocalStorageService } from './services/local-storage.service';
@@ -12,19 +11,29 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MarkdownModule, MarkdownService } from 'ngx-markdown';
+import { PostListComponent } from './components/post/list.component';
+import { PostViewComponent } from './components/post/view.component';
 @NgModule({
   declarations: [
     AppComponent,
-    PostsComponent,
     AboutComponent,
+    PostListComponent,
+    PostViewComponent
   ],
   imports: [
     FontAwesomeModule,
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot([]),
-    MarkdownModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    RouterModule.forRoot([
+      { path: 'post/:slug', component: PostViewComponent },
+    ]),
+    MarkdownModule.forRoot({
+      sanitize: SecurityContext.NONE
+    })
+  ],
+  exports: [
+    RouterModule
   ],
   providers: [
     LocalStorageService,

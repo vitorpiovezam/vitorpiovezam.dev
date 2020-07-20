@@ -1,8 +1,8 @@
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { Post } from '../components/posts/posts.component';
 import { Observable } from 'rxjs';
+import { Post } from '../components/post/list.component';
 
 @Injectable()
 export class PostService {
