@@ -31,10 +31,13 @@ svg {
   }
 }
 
-.post {
-  max-height: 100vh;
-  overflow-y: auto;
+.post, .posts {
   padding-bottom: 30px;
+
+  @include above($screen-sm) {
+    max-height: 100vh;
+    overflow-y: auto;
+  }
 }
 
 .light-theme {

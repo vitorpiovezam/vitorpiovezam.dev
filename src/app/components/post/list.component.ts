@@ -37,9 +37,7 @@ import { PostService } from 'src/app/services/post.service';
       margin: 0;
       padding: 0;
       list-style: none;
-      max-height: 90vh;
-      overflow-y: scroll;
-
+      
       .card {
         &:hover {
           border: 2px solid aquamarine;
