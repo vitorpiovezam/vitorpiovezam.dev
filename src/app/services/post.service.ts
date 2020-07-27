@@ -36,9 +36,12 @@ export class PostService {
       foooboolean fooo boolean fooo boolean fooo boolean fooo boolean fooo boolean fooo`
     }
   ];
+  apiUrl: string;
 
-  apiUrl = 'https://my-blog-cms.herokuapp.com';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    if (!environment.apiUrl) throw new Error('apiUrl is not defined');
+    this.apiUrl = environment.apiUrl;
+  }
 
   getLastPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.apiUrl}/posts`);

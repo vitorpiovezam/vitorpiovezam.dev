@@ -7,22 +7,33 @@ import { PostService } from 'src/app/services/post.service';
 @Component({
   selector: 'app-post-view',
   template: `
-    <article id="post" class="post" *ngIf="post">
+    <article class="post" *ngIf="post">
+      <div class="anchor"></div>
       <h2>{{ post?.title }} <fa-icon [icon]="close" (click)="closePost()"></fa-icon></h2>
       <markdown [data]="post?.post" ngPreserveWhitespaces></markdown>
     </article>
 
-    <a *ngIf="windowScrolled" (click)="scrollUpPost()">
+    <a *ngIf="windowScrolled" (click)="scrollUp()">
       <span class="scroller"> <</span>
     </a>
   `,
   styles: [
     `
+
+    .anchor {
+      position: relative;
+      top: -0.83em;
+      width: 20px;
+      height: 30px;
+      clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 50% 60%, 0 100%, 0 0);
+      background: aquamarine;
+    }
+
     article.post {
       width: 100%;
       line-height: 1.8rem;
       transition: all 1s;
-
+      
       fa-icon{
         float: right;
         
@@ -46,14 +57,13 @@ import { PostService } from 'src/app/services/post.service';
     `
   ],
 })
-export class PostViewComponent implements OnInit, OnChanges {
+export class PostViewComponent implements OnInit {
   post: Post;
   windowScrolled = false;
   close = faTimes;
 
   constructor(
     private postService: PostService,
-    private route: ActivatedRoute,
     private router: Router,
   ) { }
 
@@ -68,13 +78,12 @@ export class PostViewComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnChanges() {
-    console.log('mudou')
-  }
-
   getPost(id: string) {
-    console.log('pega')
-    this.postService.getPostBySlug(id).subscribe(post => this.post = post[0]);
+    this.postService.getPostBySlug(id).subscribe(post => {
+      this.post = post[0];
+      this.scrollToPost();
+    });
+    
   }
 
   closePost() {
@@ -87,8 +96,9 @@ export class PostViewComponent implements OnInit, OnChanges {
     this.windowScrolled = window.pageYOffset > 800 ? true : false;
   }
 
-  scrollUpPost() {
-    document.querySelector('article').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  scrollToPost() {
+    const article: HTMLElement = document.querySelector('.anchor');
+    if (article) article.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   scrollUp() {

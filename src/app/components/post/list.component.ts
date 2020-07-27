@@ -72,6 +72,7 @@ export class PostListComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.getLastPosts().subscribe(posts => { 
+      console.log(posts)
       this.posts = posts;
       this.loading = false;
       this.types = this.posts.map(post => post.type);
