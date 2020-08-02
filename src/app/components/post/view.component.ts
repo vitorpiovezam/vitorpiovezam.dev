@@ -1,5 +1,5 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, HostListener, OnDestroy, ViewEncapsulation, OnChanges, ɵConsole } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Post } from './list.component';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { PostService } from 'src/app/services/post.service';
@@ -33,7 +33,8 @@ import { PostService } from 'src/app/services/post.service';
       width: 100%;
       line-height: 1.8rem;
       transition: all 1s;
-      
+      user-select: text;
+
       fa-icon{
         float: right;
         
