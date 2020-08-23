@@ -89,9 +89,13 @@ export class PostViewComponent implements OnInit {
 
     this.postService.getPostBySlug(id).subscribe(post => {
       this.post = post[0];
-      this.loading = false;
+      this.doFakeLoading();
       this.scrollToPost();
     });
+  }
+  
+  doFakeLoading() {
+    setTimeout(() => this.loading = false, 400);
   }
 
   closePost() {
