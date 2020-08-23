@@ -31,7 +31,7 @@ import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
         </div>
 
         <div class="post">
-          <router-outlet></router-outlet>
+          <app-post-view></app-post-view>
         </div>
     </div>
   `,
@@ -39,20 +39,23 @@ import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 })
 export class AppComponent {
   title = 'vitor-js';
-  postSelected = false;
-  darkTheme = this.getLamp();
+  darkTheme = this.hasDarkTheme();
   lamp = faLightbulb;
-
+  
   constructor(
     private localStorageService: LocalStorageService,
   ) { }
+
+  selectPost(slug: string) {
+
+  }
 
   toggleTheme() {
     this.darkTheme = !this.darkTheme;
     this.darkTheme ? this.localStorageService.set('darkTheme', true) : this.localStorageService.remove('darkTheme');
   }
 
-  getLamp(): boolean {
+  hasDarkTheme(): boolean {
     return this.localStorageService.has('darkTheme');
   }
 }
