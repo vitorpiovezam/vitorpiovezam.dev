@@ -7,7 +7,7 @@ import { PostService } from 'src/app/services/post.service';
 @Component({
   selector: 'app-post-view',
   template: `
-    <app-loading></app-loading>
+    <app-loading *ngIf="loading"></app-loading>
     <article class="post" *ngIf="post && !loading">
       <div class="anchor"></div>
       <h2>{{ post?.title }} <fa-icon [icon]="close" (click)="closePost()"></fa-icon></h2>
