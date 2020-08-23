@@ -7,7 +7,8 @@ import { PostService } from 'src/app/services/post.service';
 @Component({
   selector: 'app-post-view',
   template: `
-    <article class="post" *ngIf="post">
+    <app-loading></app-loading>
+    <article class="post" *ngIf="post && !loading">
       <div class="anchor"></div>
       <h2>{{ post?.title }} <fa-icon [icon]="close" (click)="closePost()"></fa-icon></h2>
       <markdown [data]="post?.post" ngPreserveWhitespaces></markdown>
@@ -55,13 +56,18 @@ import { PostService } from 'src/app/services/post.service';
       font-size: 30px;
       transform: rotate(90deg);
     }
+
+    .loading {
+      
+    }
     `
   ],
 })
 export class PostViewComponent implements OnInit {
   post: Post;
-  windowScrolled = false;
   close = faTimes;
+  loading = true;
+  windowScrolled = false;
 
   constructor(
     private postService: PostService,
@@ -80,11 +86,13 @@ export class PostViewComponent implements OnInit {
   }
 
   getPost(id: string) {
+    this.loading = true;
+
     this.postService.getPostBySlug(id).subscribe(post => {
       this.post = post[0];
+      this.loading = false;
       this.scrollToPost();
     });
-    
   }
 
   closePost() {
