@@ -20,21 +20,15 @@ import { PostService } from 'src/app/services/post.service';
   `,
   styles: [
     `
-
-    .anchor {
-      position: relative;
-      top: -0.83em;
-      width: 20px;
-      height: 30px;
-      clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 50% 60%, 0 100%, 0 0);
-      background: aquamarine;
-    }
-
     article.post {
       width: 100%;
       line-height: 1.8rem;
       transition: all 1s;
       user-select: text;
+
+      ::ng-deep pre,code {
+        overflow: auto !important;
+      }
 
       fa-icon{
         float: right;
@@ -49,16 +43,21 @@ import { PostService } from 'src/app/services/post.service';
       float: right;
     }
 
+    .anchor {
+      position: relative;
+      top: -0.83em;
+      width: 20px;
+      height: 30px;
+      clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 50% 60%, 0 100%, 0 0);
+      background: aquamarine;
+    }
+
     .scroller {
       position: fixed;
       bottom: 70px;
       right: 70px;
       font-size: 30px;
       transform: rotate(90deg);
-    }
-
-    .loading {
-      
     }
     `
   ],
@@ -102,6 +101,7 @@ export class PostViewComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
+    console.log(window.pageYOffset);
     this.windowScrolled = window.pageYOffset > 800 ? true : false;
   }
 

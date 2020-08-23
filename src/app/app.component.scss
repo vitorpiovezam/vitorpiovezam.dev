@@ -35,7 +35,7 @@ svg {
   padding-bottom: 30px;
 
   @include above($screen-sm) {
-    max-height: 90vh;
+    max-height: 100vh;
     overflow-y: auto;
   }
 }
