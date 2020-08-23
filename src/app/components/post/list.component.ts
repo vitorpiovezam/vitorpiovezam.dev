@@ -30,7 +30,7 @@ import { PostService } from 'src/app/services/post.service';
     @import '../../../assets/core.scss';
 
 
-    @media (min-width: 768px) {
+    @media (min-width: 850px) {
       .container {
         padding: 0 10px;
       }

@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Post } from './list.component';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +8,7 @@ import { PostService } from 'src/app/services/post.service';
   selector: 'app-post-view',
   template: `
     <app-loading *ngIf="loading"></app-loading>
-    <article class="post" *ngIf="post && !loading">
+    <article class="post" *ngIf="!loading">
       <div class="anchor"></div>
       <h2>{{ post?.title }} <fa-icon [icon]="close" (click)="closePost()"></fa-icon></h2>
       <markdown [data]="post?.post" ngPreserveWhitespaces></markdown>
@@ -65,7 +65,7 @@ import { PostService } from 'src/app/services/post.service';
 export class PostViewComponent implements OnInit {
   post: Post;
   close = faTimes;
-  loading = true;
+  loading = false;
   windowScrolled = false;
 
   constructor(
@@ -76,6 +76,7 @@ export class PostViewComponent implements OnInit {
   ngOnInit(): void {
     this.router.events.subscribe((val) => {
       const event: any = val;
+      if (!(event instanceof NavigationEnd)) return;
 
       if (String(event.url).includes(`/post/`)) {
         const strings = event.url.split('/');
@@ -86,7 +87,6 @@ export class PostViewComponent implements OnInit {
 
   getPost(id: string) {
     this.loading = true;
-
     this.postService.getPostBySlug(id).subscribe(post => {
       this.post = post[0];
       this.doFakeLoading();
@@ -95,7 +95,11 @@ export class PostViewComponent implements OnInit {
   }
   
   doFakeLoading() {
-    setTimeout(() => this.loading = false, 400);
+    console.log(this.loading);
+    setTimeout(() => {
+      this.loading = false;
+      console.log(this.loading);
+    }, 1000);
   }
 
   closePost() {
