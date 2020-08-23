@@ -13,12 +13,14 @@ import { environment } from '../environments/environment';
 import { MarkdownModule, MarkdownService } from 'ngx-markdown';
 import { PostListComponent } from './components/post/list.component';
 import { PostViewComponent } from './components/post/view.component';
+import { LoadingComponent } from './components/shared/loading.component';
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
     PostListComponent,
-    PostViewComponent
+    PostViewComponent,
+    LoadingComponent
   ],
   imports: [
     FontAwesomeModule,
