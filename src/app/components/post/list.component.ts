@@ -29,8 +29,11 @@ import { PostService } from 'src/app/services/post.service';
     `
     @import '../../../assets/core.scss';
 
-    .container {
-      padding: 0 10px;
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 10px;
+      }
     }
 
     ul.posts {
