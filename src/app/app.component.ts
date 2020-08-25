@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { LocalStorageService } from './services/local-storage.service';
 import { Component } from '@angular/core';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
@@ -45,10 +44,6 @@ export class AppComponent {
   constructor(
     private localStorageService: LocalStorageService,
   ) { }
-
-  selectPost(slug: string) {
-
-  }
 
   toggleTheme() {
     this.darkTheme = !this.darkTheme;
