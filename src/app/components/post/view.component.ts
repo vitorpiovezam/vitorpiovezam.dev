@@ -8,7 +8,7 @@ import { PostService } from 'src/app/services/post.service';
   selector: 'app-post-view',
   template: `
     <app-loading *ngIf="loading"></app-loading>
-    <article class="post" *ngIf="!loading">
+    <article class="post" *ngIf="!loading && post">
       <div class="anchor"></div>
       <h2>{{ post?.title }} <fa-icon [icon]="close" (click)="closePost()"></fa-icon></h2>
       <markdown [data]="post?.post" ngPreserveWhitespaces></markdown>
