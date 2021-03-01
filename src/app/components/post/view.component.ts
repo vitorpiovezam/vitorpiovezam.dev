@@ -23,7 +23,7 @@ import { PostService } from 'src/app/services/post.service';
     article.post {
       width: 100%;
       line-height: 1.8rem;
-      transition: all 1s;
+      transition: all 0.6s;
       user-select: text;
 
       ::ng-deep pre,code {
@@ -88,7 +88,8 @@ export class PostViewComponent implements OnInit {
   getPost(id: string) {
     this.loading = true;
     this.postService.getPostBySlug(id).subscribe(post => {
-      this.post = post[0];
+      console.log(post)
+      this.post = post || post[0];
       this.doFakeLoading();
       this.scrollToPost();
     });
@@ -113,7 +114,6 @@ export class PostViewComponent implements OnInit {
   scrollToPost() {
     setTimeout(() => {
       const article: HTMLElement = document.querySelector('.anchor');
-      if (!article)  this.scrollToPost();
       article.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 1000);
   }
