@@ -95,10 +95,8 @@ export class PostViewComponent implements OnInit {
   }
   
   doFakeLoading() {
-    console.log(this.loading);
     setTimeout(() => {
       this.loading = false;
-      console.log(this.loading);
     }, 1000);
   }
 
@@ -109,13 +107,15 @@ export class PostViewComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    console.log(window.pageYOffset);
     this.windowScrolled = window.pageYOffset > 800 ? true : false;
   }
 
   scrollToPost() {
-    const article: HTMLElement = document.querySelector('.anchor');
-    if (article) article.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(() => {
+      const article: HTMLElement = document.querySelector('.anchor');
+      if (!article)  this.scrollToPost();
+      article.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 1000);
   }
 
   scrollUp() {
