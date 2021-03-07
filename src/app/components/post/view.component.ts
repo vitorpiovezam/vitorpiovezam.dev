@@ -104,6 +104,7 @@ export class PostViewComponent implements OnInit {
   closePost() {
     this.scrollUp();
     this.router.navigateByUrl('/');
+    this.post = null;
   }
 
   @HostListener('window:scroll', [])
@@ -114,11 +115,11 @@ export class PostViewComponent implements OnInit {
   scrollToPost() {
     setTimeout(() => {
       const article: HTMLElement = document.querySelector('.anchor');
-      article.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (article) article.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 1000);
   }
 
   scrollUp() {
-    document.querySelector('html').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelector('body').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
