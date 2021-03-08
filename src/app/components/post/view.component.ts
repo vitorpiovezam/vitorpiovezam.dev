@@ -105,6 +105,9 @@ export class PostViewComponent implements OnInit {
   }
 
   scrollToPost() {
+    const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    if (width > 700) return;
+
     setTimeout(() => {
       const article: HTMLElement = document.querySelector('article');
       if (article) article.scrollIntoView({ behavior: 'smooth', block: 'start' });

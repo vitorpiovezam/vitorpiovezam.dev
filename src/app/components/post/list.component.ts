@@ -16,7 +16,8 @@ import { PostService } from 'src/app/services/post.service';
               <div class="card">
                 <h3>{{ post.title }}</h3>
                 <p>{{ post.textPreview }}</p>
-                <span class="chip">{{ post.postDate | date: 'mediumDate'  }}</span><span class="chip">{{ post.type }}</span>
+                <span class="chip">{{ post.postDate | date: 'mediumDate'  }}</span>
+                <span class="chip">{{ post.type }}</span>
               </div>
             </a>
           </li>
@@ -40,12 +41,10 @@ import { PostService } from 'src/app/services/post.service';
       margin: 0;
       padding: 0;
       list-style: none;
-      
-      .card {
-        &:hover {
-          border: 2px solid aquamarine;
-        }
-      }
+    }
+
+    .card:hover {
+      cursor: pointer;
     }
 
     .chip {
