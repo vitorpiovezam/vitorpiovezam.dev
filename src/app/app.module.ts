@@ -29,7 +29,10 @@ import { LoadingComponent } from './components/shared/loading.component';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     RouterModule.forRoot([
       { path: 'post/:slug', component: PostViewComponent },
-    ]),
+    ],
+    {
+      scrollPositionRestoration: 'enabled'
+    }),
     MarkdownModule.forRoot({
       sanitize: SecurityContext.NONE
     })

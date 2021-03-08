@@ -1,5 +1,5 @@
 import { Router, NavigationEnd } from '@angular/router';
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewEncapsulation } from '@angular/core';
 import { Post } from './list.component';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { PostService } from 'src/app/services/post.service';
@@ -9,7 +9,6 @@ import { PostService } from 'src/app/services/post.service';
   template: `
     <app-loading *ngIf="loading"></app-loading>
     <article class="post" *ngIf="!loading && post">
-      <div class="anchor"></div>
       <h2>{{ post?.title }} <fa-icon [icon]="close" (click)="closePost()"></fa-icon></h2>
       <markdown [data]="post?.post" ngPreserveWhitespaces></markdown>
     </article>
@@ -43,15 +42,6 @@ import { PostService } from 'src/app/services/post.service';
       float: right;
     }
 
-    .anchor {
-      position: relative;
-      top: -0.83em;
-      width: 20px;
-      height: 30px;
-      clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 50% 60%, 0 100%, 0 0);
-      background: aquamarine;
-    }
-
     .scroller {
       position: fixed;
       bottom: 70px;
@@ -60,7 +50,7 @@ import { PostService } from 'src/app/services/post.service';
       transform: rotate(90deg);
     }
     `
-  ],
+  ]
 })
 export class PostViewComponent implements OnInit {
   post: Post;
@@ -103,8 +93,10 @@ export class PostViewComponent implements OnInit {
 
   closePost() {
     this.scrollUp();
-    this.router.navigateByUrl('/');
-    this.post = null;
+    setTimeout(() => {
+      this.router.navigateByUrl('/');
+      this.post = null;
+    }, 1000);
   }
 
   @HostListener('window:scroll', [])
@@ -114,12 +106,12 @@ export class PostViewComponent implements OnInit {
 
   scrollToPost() {
     setTimeout(() => {
-      const article: HTMLElement = document.querySelector('.anchor');
+      const article: HTMLElement = document.querySelector('article');
       if (article) article.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 1000);
   }
 
   scrollUp() {
-    document.querySelector('body').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelector('.posts').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }

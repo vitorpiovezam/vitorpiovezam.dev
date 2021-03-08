@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-about',
   template: `
   <div class="profile">
+  <h2>About</h2>
     <div class="text">
       <p>My name is Vitor, I'm {{ myAge }} year's old.</p>
       <p>

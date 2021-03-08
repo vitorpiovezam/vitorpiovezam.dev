@@ -52,7 +52,7 @@ import { PostService } from 'src/app/services/post.service';
       padding: 2px 5px;
       color: black;
       background: aquamarine;
-      margin-left: 5px;
+      margin-right: 5px;
 
       &:hover {
         cursor: pointer;
