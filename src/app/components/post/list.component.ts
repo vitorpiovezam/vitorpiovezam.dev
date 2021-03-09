@@ -35,6 +35,14 @@ import { PostService } from 'src/app/services/post.service';
       .container {
         padding: 0 10px;
       }
+
+     
+    }
+
+    @media (max-width: 850px) {
+      h2 {
+        margin-top: 0;
+      }
     }
 
     ul.posts {
